@@ -8,7 +8,7 @@ A modern web forum for math education.
 Install the dependencies...
 
 ```bash
-cd halp-106
+cd math-halp
 npm install
 ```
 
