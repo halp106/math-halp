@@ -12,13 +12,25 @@
 			""		// Empty space
 		]
 	}
+	
+	let tableBody = {
+
+		"bodys": [
+			"Mary Jane",
+			"I need help with maths",
+			"algebra",
+			"unsolved",
+			""
+		]
+		
+	}
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 
-	<Table bind:props={tableProperties}/>
+	<Table bind:props={tableProperties} bind:body={tableBody}/>
 </main>
 
 <style>
