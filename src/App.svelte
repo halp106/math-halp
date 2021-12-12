@@ -13,17 +13,22 @@
 		]
 	}
 	
-	let tableBody = {
-
-		"bodys": [
+	let tableBody = {"bodys": [
+			[
 			"Mary Jane",
 			"I need help with maths",
 			"algebra",
 			"unsolved",
 			""
+		],
+		[
+			"uwu owo",
+			"Calculus sucks",
+			"calculus",
+			"shitpost",
+			""
 		]
-		
-	}
+	]}
 </script>
 
 <main>

@@ -19,11 +19,13 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                    <tr>
                         {#each body.bodys as bodyContent}
-                            <th>{bodyContent}</th>
+                        <tr>
+                            {#each bodyContent as cell}
+                                            <td>{cell}</td>
+                            {/each}
+                        </tr>
                         {/each}
-                    </tr>
 
                     <!-- More people... -->
                     </tbody>
