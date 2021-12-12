@@ -22,7 +22,7 @@
                         {#each body.bodys as bodyContent}
                         <tr>
                             {#each bodyContent as cell}
-                                            <td>{cell}</td>
+                                <td>{cell}</td>
                             {/each}
                         </tr>
                         {/each}
