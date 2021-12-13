@@ -16,30 +16,33 @@
 	}
 	
 	let tableBody = {"bodys": [
-			[
-			"Mary Jane",
-			"I need help with maths",
-			"algebra",
-			"unsolved",
-			""
-		],
-		[
-			"uwu owo",
-			"Calculus sucks",
-			"calculus",
-			"shitpost",
-			""
+		{
+			"unique_id": "10", 
+  			"title": "How to Add",
+  			"username": "lronhubbard",
+  			"timestamp": "20211213T135800", 
+  			"tag": "addition", "content": "How does add work? I don't understand 3+3=6?"
+		},
+		{
+			"unique_id": "11", 
+			"title": "How to Subtract", 
+			"username": "lronhubbard", "timestamp": 
+			"20211213T135801", "tag": "subtraction", 
+			"content": "How does subtract work? I don't understand 3-3=0?"
+		}
 		]
-	]}
+	}
+
+	function getpost(event) {
+		alert("hello there")
+	}
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 	
-	<Table bind:props={tableProperties} bind:body={tableBody}/>
-	<Post/>
-	<Comment/>
+	<Table bind:props={tableProperties} bind:body={tableBody} on:item-clicked={getpost}/>
 
 </main>
 

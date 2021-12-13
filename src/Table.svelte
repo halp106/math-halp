@@ -1,6 +1,16 @@
 <script>
+    import {createEventDispatcher} from "svelte";
+    const dispatch = createEventDispatcher();
     export let props;
     export let body;
+
+	function handleClick(row) {
+		dispatch('item-clicked', {
+            title: row[1],
+            username: row[0],
+            category: row[2]
+        });
+	}
 </script>
 
 <div class="flex flex-col">
@@ -20,10 +30,12 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         {#each body.bodys as bodyContent}
-                        <tr>
-                            {#each bodyContent as cell}
-                                <td>{cell}</td>
-                            {/each}
+                        <tr class="hover:bg-zinc-400" on:click={() => handleClick(bodyContent)}>
+                                <td>{bodyContent.username}</td>
+                                <td>{bodyContent.title}</td>
+                                <td>{bodyContent.tag}</td>
+                                <td>{bodyContent.timestamp}</td>
+                                <td>edit</td>
                         </tr>
                         {/each}
 
