@@ -1,5 +1,6 @@
 <script>
 	import Table from "./Table.svelte";
+	import Login from "./Login.svelte"
 
 	export let name;
 
@@ -19,6 +20,8 @@
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 
 	<Table bind:props={tableProperties}/>
+	<Login/> 
+
 </main>
 
 <style>
