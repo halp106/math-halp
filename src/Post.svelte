@@ -1,7 +1,12 @@
 <script>
+    import {createEventDispatcher} from "svelte";
+    const dispatch = createEventDispatcher();
    export let content;
+   function handleClick() {
+		dispatch('go-back', {})
+   }
 </script>
-<button class="bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start">
+<button class="bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start" on:click={handleClick}>
     go back
 </button>
 <div id="parent" style="display:flex; flex-flow:column nowrap; display:block; height:100%; border:solid 1px gold; margin-top: 0.5em;">

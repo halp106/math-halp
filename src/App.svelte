@@ -53,6 +53,10 @@
 			"content": event.detail.content
 		};
 	}
+
+	function goback(){
+		selected.component = "Table";
+	}
 </script>
 
 
@@ -63,7 +67,7 @@
 	{#if selected.component == "Table"}
 		<Table bind:props={tableProperties} bind:body={tableBody} on:item-clicked={getpost}/>
 	{:else if selected.component == "Post"}
-		<Post bind:content={postContents}/>
+		<Post bind:content={postContents} on:go-back={goback}/>
 	{/if}
 
 </main>
