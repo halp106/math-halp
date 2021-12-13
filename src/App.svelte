@@ -1,6 +1,7 @@
 <script>
 	import Table from "./Table.svelte";
 	import Post from "./Post.svelte";
+	import Comment from "./Comment.svelte";
 
 	export let name;
 
@@ -35,9 +36,11 @@
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-
+	
 	<Table bind:props={tableProperties} bind:body={tableBody}/>
 	<Post/>
+	<Comment/>
+
 </main>
 
 <style>
