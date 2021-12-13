@@ -6,9 +6,12 @@
 
 	function handleClick(row) {
 		dispatch('item-clicked', {
-            title: row[1],
-            username: row[0],
-            category: row[2]
+			unique_id: row.unique_id,
+			title: row.title,
+			username: row.username,
+			timestamp: row.timestamp,
+			tag: row.tag,
+		    content: row.content
         });
 	}
 </script>

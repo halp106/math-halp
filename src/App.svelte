@@ -8,6 +8,7 @@
 		{component: "Post"},
 		{component: "Comment"}
 	]
+
 	let selected = comps[0]
 	export let name;
 
@@ -27,7 +28,8 @@
   			"title": "How to Add",
   			"username": "lronhubbard",
   			"timestamp": "20211213T135800", 
-  			"tag": "addition", "content": "How does add work? I don't understand 3+3=6?"
+  			"tag": "addition",
+			"content": "How does add work? I don't understand 3+3=6?"
 		},
 		{
 			"unique_id": "11", 
@@ -39,8 +41,17 @@
 		]
 	}
 
+	let postContents;
 	function getpost(event) {
-		selected.component = "Post"
+		selected.component = "Post";
+		postContents = {
+			"unique_id": event.detail.unique_id,
+			"title": event.detail.title,
+			"username": event.detail.username,
+			"timestamp": event.detail.timestamp,
+			"tag": event.detail.tag,
+			"content": event.detail.content
+		};
 	}
 </script>
 
@@ -52,7 +63,7 @@
 	{#if selected.component == "Table"}
 		<Table bind:props={tableProperties} bind:body={tableBody} on:item-clicked={getpost}/>
 	{:else if selected.component == "Post"}
-		<Post/>
+		<Post bind:content={postContents}/>
 	{/if}
 
 </main>

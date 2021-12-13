@@ -1,5 +1,5 @@
 <script>
-    let showLeft = true;
+   export let content;
 </script>
 <button class="bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start">
     go back
@@ -8,21 +8,21 @@
     <div style="display:flex; justify-content:start; margin-top:0.5em; margin-right: 40px">
         <h1>
             <b>
-                wow
+                {content.title}
             </b>
         </h1>
     </div>
     <div style="display:flex; justify-content:start; border:solid 2px cyan; margin-top:0.5em">
         <p>
-            username 1111-11-11 00:00:02
+            {content.username}
         </p>
         <div style="margin-left:auto">
-            Thread# 1234567
+            Thread# {content.unique_id}  @{content.timestamp}
         </div>
     </div>
     <div style="display:flex; justify-content:start; border:solid 2px red; min-height:250px;">
         <p>
-            content blah blah blah calculus sucks
+            {content.content}
         </p>
     </div>
 </div>
