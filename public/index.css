@@ -434,6 +434,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .overflow-x-auto {
   overflow-x: auto;
 }
+.break-normal {
+  overflow-wrap: normal;
+  word-break: normal;
+}
 .border-b {
   border-bottom-width: 1px;
 }
