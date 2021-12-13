@@ -1,7 +1,9 @@
 <script>
     let showLeft = true;
 </script>
-
+<button class="bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start">
+    go back
+</button>
 <div id="parent" style="display:flex; flex-flow:column nowrap; display:block; height:100%; border:solid 1px gold; margin-top: 0.5em;">
     <div style="display:flex; justify-content:start; margin-top:0.5em; margin-right: 40px">
         <h1>
