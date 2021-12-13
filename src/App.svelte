@@ -3,6 +3,12 @@
 	import Post from "./Post.svelte";
 	import Comment from "./Comment.svelte";
 
+	const comps = [
+		{component: "Table"},
+		{component: "Post"},
+		{component: "Comment"}
+	]
+	let selected = comps[0]
 	export let name;
 
 	let tableProperties = {
@@ -34,15 +40,20 @@
 	}
 
 	function getpost(event) {
-		alert("hello there")
+		selected.component = "Post"
 	}
 </script>
+
 
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 	
-	<Table bind:props={tableProperties} bind:body={tableBody} on:item-clicked={getpost}/>
+	{#if selected.component == "Table"}
+		<Table bind:props={tableProperties} bind:body={tableBody} on:item-clicked={getpost}/>
+	{:else if selected.component == "Post"}
+		<Post/>
+	{/if}
 
 </main>
 
