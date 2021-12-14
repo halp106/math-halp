@@ -134,13 +134,14 @@
 
   {:else if selected.component == "Post"}
     <Post bind:content={postContents}
+	bind:username={name}
 	on:createComment={createComment} 
 	on:go-back={goToThreadList} />
 
     {#if comment_list.item.length > 0}
       <p><b>Comments:</b></p>
       {#each comment_list.item as comment}
-        <Comment bind:commentContent={comment} />
+        <Comment bind:commentContent={comment} bind:username={name} />
       {/each}
     {/if}
   {/if}
