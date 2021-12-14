@@ -62,7 +62,7 @@
 
   function goToThreadList() {
 	try {
-      fetch("127.0.0.1:8000/threads")
+      fetch("127.0.0.1/threads")
 .then(response => {
     data = JSON.parse(response)
 	tableBody = data

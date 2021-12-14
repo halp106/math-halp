@@ -9,7 +9,7 @@
       unique_id: row.unique_id,
       title: row.title,
       username: row.creator_uid,
-      timestamp: row.timestamp,
+      timestamp: row.creation_timestamp,
       tag: row.tag,
       content: row.content,
     });
@@ -47,7 +47,7 @@
                                 <td>{bodyContent.creator_uid}</td>
                                 <td>{bodyContent.title}</td>
                                 <td>{bodyContent.tag}</td>
-                                <td>{bodyContent.timestamp}</td>
+                                <td>{bodyContent.creation_timestamp}</td>
                                 <td></td>
                         </tr>
                         {/each}
