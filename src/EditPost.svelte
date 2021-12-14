@@ -23,7 +23,7 @@
   go back
 </button>
 <div id="parent" style="display:flex; flex-flow:column nowrap; display:block; height:100%; border:solid 1px gold; margin-top: 0.5em; background-color:GhostWhite; margin-bottom: 1em;">
-    <div style="display:flex; justify-content:start; margin-top:0.5em;">
+    <div style="display:flex; justify-content:start;">
        <textarea
       bind:value={threadTitle}
       class="flex-auto shadow appearance-none border rounded w-full py-2 text-grey-darker"
