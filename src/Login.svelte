@@ -3,6 +3,7 @@
   const dispatchEvent = createEventDispatcher();
   export let Username;
   export let Password;
+  let Email;
 
   function loginSuccessful() {
     dispatchEvent("goToThread", {user: Username});
@@ -14,6 +15,11 @@
 
   function logintoThreadpage() {
     alert(Username);
+    loginSuccessful();
+  }
+
+  function register(){
+    alert("registering");
     loginSuccessful();
   }
 </script>
@@ -30,6 +36,19 @@
       type="text"
       placeholder="Username"
     />
+  </div>
+  <div class="mb-6">
+    <label class="block text-grey-darker text-sm font-bold mb-2" for="email">
+      email (for Registering)
+    </label>
+    <input
+      bind:value={Email}
+      class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+      id="email"
+      type="text"
+      placeholder="someplace@email.com"
+    />
+    <p class="text-red text-xs italic">Please choose a password.</p>
   </div>
   <div class="mb-6">
     <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
@@ -51,6 +70,13 @@
       type="button"
     >
       Sign In
+    </button>
+    <button
+      on:click={register}
+      class="bg-blue hover:bg-blue-dark text-black font-bold py-2 px-4 rounded-lg"
+      type="button"
+    >
+      Register
     </button>
   </div>
 </div>
