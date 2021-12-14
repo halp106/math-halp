@@ -5,7 +5,6 @@
     export let username;
 
     function editComment(){
-        alert("editing in db")
         dispatch("editComment", {content: commentContent.content})
     }
 </script>
