@@ -50,7 +50,8 @@
     };
 
 	try {
-      fetch("127.0.0.1/threads/"+postContents.thread_id+"/comments")
+      fetch("127.0.0.1/threads/"+postContents.thread_id+"/comments",
+	  headers:{"x-auth-key":authkey;})
 .then(response => {
     data = JSON.parse(response)
 	comment_list = data
@@ -61,8 +62,10 @@
   }
 
   function goToThreadList() {
+
 	try {
-      fetch("127.0.0.1/threads")
+      fetch("127.0.0.1/threads", 
+	  headers:{"x-auth-key":authkey;})
 .then(response => {
     data = JSON.parse(response)
 	tableBody = data
@@ -76,7 +79,8 @@
 
   function goToPost() {
 	try {
-      fetch("127.0.0.1/threads/"+postContents.thread_id+"/comments")
+      fetch("127.0.0.1/threads/"+postContents.thread_id+"/comments", 
+	  headers:{"x-auth-key":authkey;})
 .then(response => {
     data = JSON.parse(response)
 	comment_list = data
@@ -106,8 +110,12 @@
 	  selectedComment = event.detail.content
   }
 
+  let authkey;
+  let expiration;
   function login(event) {
 	  name = event.detail.user;
+	  authkey = event.detail.authkey;
+	  expiration = event.detail.expiration;
     selected.component = "Table";
     
   }

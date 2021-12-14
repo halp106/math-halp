@@ -7,7 +7,7 @@
   let success = false;
 
   function loginSuccessful() {
-    dispatchEvent("goToThread", {user: Username});
+    dispatchEvent("goToThread", {user: Username, authkey:key, expiration:expire});
   }
 
   function loginUnSuccessful() {
