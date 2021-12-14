@@ -2,6 +2,7 @@
 	import Table from "./Table.svelte";
 	import Post from "./Post.svelte";
 	import Comment from "./Comment.svelte";
+	import Login from "./Login.svelte"
 
 	const comps = [
 		{component: "Table"},
