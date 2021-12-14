@@ -42,7 +42,7 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        {#each body.bodys as bodyContent}
+                        {#each body.threads as bodyContent}
                         <tr class="hover:bg-zinc-400" on:click={() => handleClick(bodyContent)}>
                                 <td>{bodyContent.creator_uid}</td>
                                 <td>{bodyContent.title}</td>

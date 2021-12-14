@@ -48,33 +48,23 @@
       tag: event.detail.tag,
       content: event.detail.content,
     };
-
-    comment_list = {
-      item: [
-        {
-          unique_comment_id: "1",
-          thread_id: "10",
-          username: "uwuwuwu",
-          timestamp: "20211213T143800",
-          content: "why are you here :thonk:",
-        },
-        {
-          unique_comment_id: "2",
-          thread_id: "10",
-          username: "Cirno",
-          timestamp: "20211215T153800",
-          content: "baka baka",
-        }
-      ]
-    };
+	try {
+      fetch("127.0.0.1/threads/"+postContents.thread_id+"/comments")
+.then(response => {
+    data = JSON.parse(response)
+	comment_list = data
+    })
+  }catch(error) {
+        console.error(error);
+    }
   }
 
   function goToThreadList() {
 	try {
       fetch("127.0.0.1:8000/threads")
-.then(response => response.json())
-  .then(data => {
-    tableBody = data
+.then(response => {
+    data = JSON.parse(response)
+	tableBody = data
     })
   }catch(error) {
         console.error(error);
@@ -84,7 +74,15 @@
   }
 
   function goToPost() {
-   	
+	try {
+      fetch("127.0.0.1/threads/"+postContents.thread_id+"/comments")
+.then(response => {
+    data = JSON.parse(response)
+	comment_list = data
+    })
+  }catch(error) {
+        console.error(error);
+    }
 	selected.component = "Post";
 	  
   }
