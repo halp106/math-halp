@@ -4,7 +4,12 @@
    export let content;
    export let username;
    function handleClick() {
-		dispatch('go-back')
+
+		dispatch('go-back', {})
+    
+   }
+   function createButtonClicked(){
+       dispatch("createComment")
    }
 </script>
 <button class="bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white rounded-md" on:click={handleClick}>
@@ -37,4 +42,10 @@
         </button>
         {/if}
     </div>
+    <button
+  class="flex-auto bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white"
+  on:click={createButtonClicked}
+>
+  Create Comment
+</button>
 </div>

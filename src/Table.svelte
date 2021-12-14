@@ -1,36 +1,37 @@
 <script>
-    import {createEventDispatcher} from "svelte";
-    const dispatch = createEventDispatcher();
-    export let props;
-    export let body;
+  import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
+  export let props;
+  export let body;
 
-    let createThread = false;
+  let createThread = false;
 
-	function handleClick(row) {
-		dispatch('item-clicked', {
-			unique_id: row.unique_id,
-			title: row.title,
-			username: row.username,
-			timestamp: row.timestamp,
-			tag: row.tag,
-		    content: row.content
-        });
-	}
-    function createButtonClicked(){
-        createThread = !createThread
-    }
-
+  function handleClick(row) {
+    dispatch("item-clicked", {
+      unique_id: row.unique_id,
+      title: row.title,
+      username: row.username,
+      timestamp: row.timestamp,
+      tag: row.tag,
+      content: row.content,
+    });
+  }
+  function createButtonClicked() {
+    dispatch("createNewThread");
+  }
 </script>
-<button class="flex-auto bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white" on:click={createButtonClicked}>
-    create thread
+
+<button
+  class="flex-auto bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white"
+  on:click={createButtonClicked}
+>
+  create thread
 </button>
 
 {#if createThread}
-<div>
-    <p>
-        thread_creation here
-    </p>
-</div>
+  <div>
+    <p>thread_creation here</p>
+  </div>
 {/if}
 
 <div class="flex flex-col">
@@ -59,10 +60,10 @@
                         </tr>
                         {/each}
 
-                    <!-- More people... -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+            <!-- More people... -->
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>
