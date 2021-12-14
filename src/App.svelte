@@ -78,9 +78,9 @@
 		};
 	}
 
-	function goToThreadList(){
+	function goToThreadList(event){
 		selected.component = "Table";
-		name = user
+		name = event.detail.user
 	}
 
 	function login(){
@@ -93,7 +93,7 @@
 
 
 <main>
-	<h1>Welcome to Math Halp! {name}</h1>
+	<h1>Welcome to Math Halp, {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 	
 	{#if selected.component == "Login"}
