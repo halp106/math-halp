@@ -23,19 +23,20 @@
   go back
 </button>
 <div id="parent" style="display:flex; flex-flow:column nowrap; display:block; height:100%; border:solid 1px gold; margin-top: 0.5em; background-color:GhostWhite; margin-bottom: 1em;">
-    <div style="display:flex; justify-content:start; margin-top:0.5em; margin-right: 40px">
-       <input
+    <div style="display:flex; justify-content:start; margin-top:0.5em;">
+       <textarea
       bind:value={threadTitle}
-      class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
+      class="flex-auto shadow appearance-none border rounded w-full py-2 text-grey-darker"
       id="ThreadTitle"
       type="text"
       placeholder="Thread Title"
-    />
+    ></textarea>
     </div>
     
     <div style="display:flex; justify-content:start; border:solid 2px red; min-height:250px;">
-        <input
+        <textarea
         bind:value={threadContent}
+        class="flex-auto shadow appearance-none border rounded w-full py-2 text-grey-darker"
         id="ThreadPost"
         type="text"
          placeholder="Begin a Disscusion"
