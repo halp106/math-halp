@@ -7,8 +7,10 @@
   import CreateComment from "./CreateComment.svelte";
   import EditPost from "./EditPost.svelte";
   import EditComment from "./EditComment.svelte";
+  import Landing from "./Landing.svelte";
 
   const comps = [
+	{ component: "Landing"},
     { component: "Login" },
     { component: "Table" },
     { component: "Post" },
@@ -123,6 +125,11 @@
     
   }
 
+  function toLoginPage(){
+	selected.component = "Login"
+  }
+
+
 </script>
 
 <main>
@@ -131,8 +138,10 @@
     Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
     how to build Svelte apps.
   </p>
-
-  {#if selected.component == "Login"}
+  
+  {#if selected.component == "Landing"}
+  	<Landing on:sign-in={toLoginPage} on:authenticated={goToThreadList}/>
+  {:else if selected.component == "Login"}
     <Login on:goToThread={login} />
   {:else if selected.component == "Table"}
     <Table
