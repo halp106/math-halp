@@ -7,10 +7,10 @@
 		dispatch('go-back')
    }
 </script>
-<button class="bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white" on:click={handleClick}>
+<button class="bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white rounded-md" on:click={handleClick}>
     go back
 </button>
-<div id="parent" style="display:flex; flex-flow:column nowrap; display:block; height:100%; border:solid 3px gold; margin-top: 0.5em; background-color:GhostWhite; margin-bottom: 1em;">
+<div id="parent" style="display:flex; flex-flow:column nowrap; display:block; height:100%; border:solid 3px gold; margin-top: 0.5em; background-color:GhostWhite; margin-bottom: 1em; border-radius: 10px; overflow:hidden;">
     <div style="display:flex; justify-content:start; margin-top:0.5em; margin-right: 40px">
         <h1>
             <b>
@@ -26,7 +26,7 @@
             Thread# {content.unique_id}  @{content.timestamp}
         </div>
     </div>
-    <div style="display:flex; justify-content:start; border:solid 2px LightCoral; min-height:250px;">
+    <div style="display:flex; justify-content:start; border:solid 2px LightCoral; min-height:250px; border-radius: 10px; overflow:hidden;">
         <p>
             {content.content}
         </p>
