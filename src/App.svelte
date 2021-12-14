@@ -42,8 +42,10 @@
 	}
 
 	let postContents;
+	let comment_list;
 	function getpost(event) {
 		selected.component = "Post";
+
 		postContents = {
 			"unique_id": event.detail.unique_id,
 			"title": event.detail.title,
@@ -52,6 +54,24 @@
 			"tag": event.detail.tag,
 			"content": event.detail.content
 		};
+
+		comment_list = {"item": [
+			{
+				"unique_comment_id": "1",
+				"thread_id": "10",
+				"username": "uwuwuwu",
+				"timestamp": "20211213T143800",
+				"content": "why are you here :thonk:"
+			},
+			{
+				"unique_comment_id": "2",
+				"thread_id": "10",
+				"username": "Cirno",
+				"timestamp": "20211215T153800",
+				"content": "baka baka"
+			}
+		]
+		}
 	}
 
 	function goback(){
@@ -68,6 +88,9 @@
 		<Table bind:props={tableProperties} bind:body={tableBody} on:item-clicked={getpost}/>
 	{:else if selected.component == "Post"}
 		<Post bind:content={postContents} on:go-back={goback}/>
+		{#each comment_list.item as comment}
+			<Comment bind:commentContent={comment}/>
+		{/each}
 	{/if}
 
 </main>

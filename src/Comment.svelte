@@ -1,18 +1,19 @@
 <script>
-    let showLeft = true;
+    export let commentContent;
 </script>
 
 <div id="parent" style="display:flex; display:block; height:100%; border:solid 1px gold">
 
     <div style="display:flex; justify-content:start">
         <p>
-            username 1111-11-11 00:00:02
+            {commentContent.username}
         </p>
+        <div style="margin-left:auto"> Comment# {commentContent.unique_comment_id}  @{commentContent.timestamp}</div>
     </div>
 
     <div style="display:flex; justify-content:start">
         <p>
-            content blah blah blah calculus sucks
+            {commentContent.content}
         </p>
     </div>
 </div>
