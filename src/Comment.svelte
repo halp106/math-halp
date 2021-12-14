@@ -2,7 +2,7 @@
     export let commentContent;
 </script>
 
-<div id="parent" style="display:flex; display:block; height:100%; border:solid 1px gold">
+<div id="parent" style="display:flex; display:block; height:100%; border:solid 1px gold; background-color:GhostWhite">
 
     <div style="display:flex; justify-content:start">
         <p>
