@@ -55,7 +55,7 @@
                                 <td>{bodyContent.title}</td>
                                 <td>{bodyContent.tag}</td>
                                 <td>{bodyContent.timestamp}</td>
-                                <td>edit</td>
+                                <td></td>
                         </tr>
                         {/each}
 
