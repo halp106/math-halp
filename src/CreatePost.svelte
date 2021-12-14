@@ -6,7 +6,7 @@
   let threadPost;
 
   function createNewPost() {
-    alert("New Post Created");
+    alert("New Post Created "+threadTitle);
     goBack();
   }
 
