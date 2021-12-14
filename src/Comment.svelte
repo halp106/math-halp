@@ -16,10 +16,11 @@
         <p>
             {commentContent.content}
         </p>
-    </div>
-    {#if username == commentContent.username}
-        <button style="display:flex; justify-content:end; color:white; background-color: DeepSkyBlue">
+
+        {#if username == commentContent.username}
+        <button style="display:flex; margin-left:auto; margin-top:auto; color:white; background-color: DeepSkyBlue">
             Edit
         </button>
     {/if}
+    </div>
 </div>

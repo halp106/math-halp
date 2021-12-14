@@ -2,7 +2,7 @@
 	import Table from "./Table.svelte";
 	import Post from "./Post.svelte";
 	import Comment from "./Comment.svelte";
-	import Login from "./Login.svelte"
+	import Login from "./Login.svelte";
 
 	const comps = [
 		{component: "Table"},
@@ -67,7 +67,7 @@
 			{
 				"unique_comment_id": "2",
 				"thread_id": "10",
-				"username": "Cirno",
+				"username": "lronhubbard",
 				"timestamp": "20211215T153800",
 				"content": "baka baka"
 			}
@@ -88,7 +88,7 @@
 	{#if selected.component == "Table"}
 		<Table bind:props={tableProperties} bind:body={tableBody} on:item-clicked={getpost}/>
 	{:else if selected.component == "Post"}
-		<Post bind:content={postContents} on:go-back={goback}/>
+		<Post bind:content={postContents} bind:username={name} on:go-back={goback}/>
 
 		{#if comment_list.item.length > 0}
 			<p><b>Comments:</b></p>

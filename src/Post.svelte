@@ -2,8 +2,9 @@
     import {createEventDispatcher} from "svelte";
     const dispatch = createEventDispatcher();
    export let content;
+   export let username;
    function handleClick() {
-		dispatch('go-back', {})
+		dispatch('go-back')
    }
 </script>
 <button class="bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white" on:click={handleClick}>
@@ -29,5 +30,11 @@
         <p>
             {content.content}
         </p>
+
+        {#if username == content.username}
+        <button style="display:flex; margin-left:auto; margin-top:auto; color:white; background-color: DeepSkyBlue">
+        Edit Post
+        </button>
+        {/if}
     </div>
 </div>
