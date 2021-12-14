@@ -32,7 +32,11 @@
         console.error(error);
     }
 
+    if (success){
     loginSuccessful();
+    }else{
+      loginUnSuccessful();
+    }
   }
 
   function register(){
@@ -54,8 +58,11 @@
   }catch(error) {
         console.error(error);
     }
-  
+    if (success){
     loginSuccessful();
+    }else{
+      loginUnSuccessful();
+    }
   }
 </script>
 
