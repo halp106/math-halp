@@ -1,7 +1,16 @@
 <script>
 	import Table from "./Table.svelte";
+	import Post from "./Post.svelte";
+	import Comment from "./Comment.svelte";
 	import Login from "./Login.svelte"
 
+	const comps = [
+		{component: "Table"},
+		{component: "Post"},
+		{component: "Comment"}
+	]
+
+	let selected = comps[0]
 	export let name;
 
 	let tableProperties = {
@@ -13,14 +22,82 @@
 			""		// Empty space
 		]
 	}
+	
+	let tableBody = {"bodys": [
+		{
+			"unique_id": "10", 
+  			"title": "How to Add",
+  			"username": "lronhubbard",
+  			"timestamp": "20211213T135800", 
+  			"tag": "addition",
+			"content": "How does add work? I don't understand 3+3=6?"
+		},
+		{
+			"unique_id": "11", 
+			"title": "How to Subtract", 
+			"username": "lronhubbard", "timestamp": 
+			"20211213T135801", "tag": "subtraction", 
+			"content": "How does subtract work? I don't understand 3-3=0?"
+		}
+		]
+	}
+
+	let postContents;
+	let comment_list;
+	function getpost(event) {
+		selected.component = "Post";
+
+		postContents = {
+			"unique_id": event.detail.unique_id,
+			"title": event.detail.title,
+			"username": event.detail.username,
+			"timestamp": event.detail.timestamp,
+			"tag": event.detail.tag,
+			"content": event.detail.content
+		};
+
+		comment_list = {"item": [
+			{
+				"unique_comment_id": "1",
+				"thread_id": "10",
+				"username": "uwuwuwu",
+				"timestamp": "20211213T143800",
+				"content": "why are you here :thonk:"
+			},
+			{
+				"unique_comment_id": "2",
+				"thread_id": "10",
+				"username": "Cirno",
+				"timestamp": "20211215T153800",
+				"content": "baka baka"
+			}
+		]
+		};
+	}
+
+	function goback(){
+		selected.component = "Table";
+	}
 </script>
+
 
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	
+	{#if selected.component == "Table"}
+		<Table bind:props={tableProperties} bind:body={tableBody} on:item-clicked={getpost}/>
+	{:else if selected.component == "Post"}
+		<Post bind:content={postContents} on:go-back={goback}/>
 
-	<Table bind:props={tableProperties}/>
-	<Login/> 
+		{#if comment_list.item.length > 0}
+			<p><b>Comments:</b></p>
+			{#each comment_list.item as comment}
+				<Comment bind:commentContent={comment}/>
+			{/each}
+
+		{/if}
+	{/if}
 
 </main>
 
