@@ -1,37 +1,30 @@
 <script>
-    import {createEventDispatcher} from "svelte";
-    const dispatch = createEventDispatcher();
-    export let props;
-    export let body;
+  import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
+  export let props;
+  export let body;
 
-    let createThread = false;
-
-	function handleClick(row) {
-		dispatch('item-clicked', {
-			unique_id: row.unique_id,
-			title: row.title,
-			username: row.username,
-			timestamp: row.timestamp,
-			tag: row.tag,
-		    content: row.content
-        });
-	}
-    function createButtonClicked(){
-        createThread = !createThread
-    }
-
+  function handleClick(row) {
+    dispatch("item-clicked", {
+      unique_id: row.unique_id,
+      title: row.title,
+      username: row.username,
+      timestamp: row.timestamp,
+      tag: row.tag,
+      content: row.content,
+    });
+  }
+  function createButtonClicked() {
+    dispatch("createNewThread");
+  }
 </script>
-<button class="flex-auto bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white" on:click={createButtonClicked}>
-    create thread
-</button>
 
-{#if createThread}
-<div>
-    <p>
-        thread_creation here
-    </p>
-</div>
-{/if}
+<button
+  class="flex-auto bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white"
+  on:click={createButtonClicked}
+>
+  create thread
+</button>
 
 <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -55,14 +48,14 @@
                                 <td>{bodyContent.title}</td>
                                 <td>{bodyContent.tag}</td>
                                 <td>{bodyContent.timestamp}</td>
-                                <td>edit</td>
+                                <td></td>
                         </tr>
                         {/each}
 
-                    <!-- More people... -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+            <!-- More people... -->
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>
