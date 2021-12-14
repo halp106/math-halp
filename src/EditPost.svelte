@@ -5,6 +5,7 @@
   export let threadID;
   export let threadTitle;
   export let threadContent;
+  export let key;
 
   function editPost() {
     alert("Post edited "+threadTitle+"\n ID:"+threadID);

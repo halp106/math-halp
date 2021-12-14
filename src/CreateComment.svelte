@@ -2,12 +2,34 @@
   import { createEventDispatcher } from "svelte";
   const dispatchEvent = createEventDispatcher();
   export let username;
+  export let threadID;
+  export let key;
   let comment = "";
   
 
   function createNewComment() {
-    alert(comment+"Created by"+username);
-    goBack();
+    try {
+      fetch("127.0.0.1/thread/"+threadID+"/create_comment", {
+      method: "post",
+  body: JSON.stringify({
+    "content":comment
+  }),
+  headers:{
+    "x-auth-key":key
+  }
+})
+.then(response => {
+    data = JSON.parse(response)
+    if (data.success){
+      goBack();
+    }else{
+      alert("failed")
+    }
+  })
+    }catch(error) {
+        console.error(error);
+        alert(error)
+    }
   }
 
   function goBack() {

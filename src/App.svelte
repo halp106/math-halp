@@ -34,27 +34,7 @@
     ]
   };
 
-  let tableBody = {
-    bodys: [
-      {
-        unique_id: "10",
-        title: "How to Add",
-        username: "lronhubbard",
-        timestamp: "20211213T135800",
-        tag: "addition",
-        content: "How does add work? I don't understand 3+3=6?"
-      },
-      {
-        unique_id: "11",
-        title: "How to Subtract",
-        username: "lronhubbard",
-        timestamp: "20211213T135801",
-        tag: "subtraction",
-        content: "How does subtract work? I don't understand 3-3=0?"
-      }
-    ]
-  };
-
+  let tableBody;
   let postContents;
   let comment_list;
   function getpost(event) {
@@ -69,34 +49,45 @@
       content: event.detail.content,
     };
 
-    comment_list = {
-      item: [
-        {
-          unique_comment_id: "1",
-          thread_id: "10",
-          username: "uwuwuwu",
-          timestamp: "20211213T143800",
-          content: "why are you here :thonk:",
-        },
-        {
-          unique_comment_id: "2",
-          thread_id: "10",
-          username: "Cirno",
-          timestamp: "20211215T153800",
-          content: "baka baka",
-        }
-      ]
-    };
+	try {
+      fetch("127.0.0.1/threads/"+postContents.thread_id+"/comments",
+	  header:{"x-auth-key":authkey})
+.then(response => {
+    data = JSON.parse(response)
+	comment_list = data
+    })
+  }catch(error) {
+        console.error(error);
+    }
   }
 
   function goToThreadList() {
-   	
+
+	try {
+      fetch("127.0.0.1/threads", 
+	  headers:{"x-auth-key":authkey})
+.then(response => {
+    data = JSON.parse(response)
+	tableBody = data
+    })
+  }catch(error) {
+        console.error(error);
+    }
 	selected.component = "Table";
 	
   }
 
   function goToPost() {
-   	
+	try {
+      fetch("127.0.0.1/threads/"+postContents.thread_id+"/comments", 
+	  headers:{"x-auth-key":authkey})
+.then(response => {
+    data = JSON.parse(response)
+	comment_list = data
+    })
+  }catch(error) {
+        console.error(error);
+    }
 	selected.component = "Post";
 	  
   }
@@ -119,8 +110,12 @@
 	  selectedComment = event.detail.content
   }
 
+  let authkey;
+  let expiration;
   function login(event) {
 	  name = event.detail.user;
+	  authkey = event.detail.authkey;
+	  expiration = event.detail.expiration;
     selected.component = "Table";
     
   }
@@ -151,22 +146,24 @@
 	  on:createNewThread={createPost}
     />
   {:else if selected.component == "CreatePost"}
-    <CreatePost bind:username={name} on:goToThread={goToThreadList} />
+    <CreatePost bind:username={name} bind:key={authkey} on:goToThread={goToThreadList} />
 
 	{:else if selected.component == "CreateComment"}
-    <CreateComment bind:username={name} on:goToPost={goToPost} />
+    <CreateComment bind:username={name} bind:key={authkey} bind:threadID={postContents.unique_id} on:goToPost={goToPost} />
 
   {:else if selected.component == "EditPost"}
   	<EditPost bind:username={name}
 	  bind:threadID={postContents.unique_id}
 	  bind:threadTitle={postContents.title}
 	  bind:threadContent={postContents.content}
+	  bind:key={authkey}
 	  on:goToPost={goToPost}/>
 
   {:else if selected.component == "EditComment"}
   	<EditComment 
 	  bind:username={name}
 	  bind:comment={selectedComment}
+	  bind:key={authkey}
 	  on:goToPost={goToPost}/>
 
   {:else if selected.component == "Post"}
@@ -178,7 +175,7 @@
 
     {#if comment_list.item.length > 0}
       <p><b>Comments:</b></p>
-      {#each comment_list.item as comment}
+      {#each comment_list.comments as comment}
         <Comment bind:commentContent={comment} 
 		bind:username={name} 
 		on:editComment={editComment}/>

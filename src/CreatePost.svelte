@@ -2,12 +2,36 @@
     import { createEventDispatcher } from "svelte";
   const dispatchEvent = createEventDispatcher();
   export let username;
+  export let key;
   let threadTitle;
+  let threadTag;
   let threadPost;
 
   function createNewPost() {
-    alert("New Post Created "+threadTitle);
-    goBack();
+    try {
+      fetch("127.0.0.1/thread/create", {
+      method: "post",
+  body: JSON.stringify({
+    "title":threadTitle,
+    "tag":threadTag,
+    "content":threadPost
+  }),
+  headers:{
+    "x-auth-key":key
+  }
+})
+.then(response => {
+    data = JSON.parse(response)
+    if(data.success){
+      goBack();
+    }else{
+      alert("failed")
+    }
+  })
+    }catch(error) {
+        console.error(error);
+        alert(error)
+    }
   }
 
   function goBack() {
@@ -31,7 +55,15 @@
       placeholder="Thread Title"
     />
     </div>
-    
+    <div style="display:flex; justify-content:start; border:SkyBlue; margin-top:0.5em">
+      <textarea
+        bind:value={threadTag}
+        class="flex-auto shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
+        id="ThreadTag"
+        type="text"
+         placeholder="Category"
+        />
+      </div>
     <div style="display:flex; justify-content:start; border:solid 2px red; min-height:250px;">
         <textarea
         bind:value={threadPost}

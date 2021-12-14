@@ -8,8 +8,8 @@
     dispatch("item-clicked", {
       unique_id: row.unique_id,
       title: row.title,
-      username: row.username,
-      timestamp: row.timestamp,
+      username: row.creator_uid,
+      timestamp: row.creation_timestamp,
       tag: row.tag,
       content: row.content,
     });
@@ -42,12 +42,12 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        {#each body.bodys as bodyContent}
+                        {#each body.threads as bodyContent}
                         <tr class="hover:bg-zinc-400" on:click={() => handleClick(bodyContent)}>
-                                <td>{bodyContent.username}</td>
+                                <td>{bodyContent.creator_uid}</td>
                                 <td>{bodyContent.title}</td>
                                 <td>{bodyContent.tag}</td>
-                                <td>{bodyContent.timestamp}</td>
+                                <td>{bodyContent.creation_timestamp}</td>
                                 <td></td>
                         </tr>
                         {/each}
