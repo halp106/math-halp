@@ -1,5 +1,6 @@
 <script>
     export let commentContent;
+    export let isEditable;
 </script>
 
 <div id="parent" style="display:flex; display:block; height:100%; border:solid 1px gold; background-color:GhostWhite">
@@ -16,4 +17,7 @@
             {commentContent.content}
         </p>
     </div>
+    <button style="display:flex; justify-content:end; color:white; background-color: DeepSkyBlue">
+        Edit
+    </button>
 </div>
