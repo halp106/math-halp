@@ -92,6 +92,7 @@
   function goToPost() {
    	
 	selected.component = "Post";
+	  
   }
 
   function createPost() {
