@@ -3,6 +3,7 @@
   const dispatchEvent = createEventDispatcher();
   export let username;
   export let threadID;
+  export let key;
   let comment = "";
   
 
@@ -12,7 +13,10 @@
       method: "post",
   body: JSON.stringify({
     "content":comment
-  })
+  }),
+  headers:{
+    "x-auth-key":key
+  }
 })
 .then(response => {
     data = JSON.parse(response)

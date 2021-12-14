@@ -51,7 +51,7 @@
 
 	try {
       fetch("127.0.0.1/threads/"+postContents.thread_id+"/comments",
-	  headers:{"x-auth-key":authkey;})
+	  header:{"x-auth-key":authkey})
 .then(response => {
     data = JSON.parse(response)
 	comment_list = data
@@ -65,7 +65,7 @@
 
 	try {
       fetch("127.0.0.1/threads", 
-	  headers:{"x-auth-key":authkey;})
+	  headers:{"x-auth-key":authkey})
 .then(response => {
     data = JSON.parse(response)
 	tableBody = data
@@ -80,7 +80,7 @@
   function goToPost() {
 	try {
       fetch("127.0.0.1/threads/"+postContents.thread_id+"/comments", 
-	  headers:{"x-auth-key":authkey;})
+	  headers:{"x-auth-key":authkey})
 .then(response => {
     data = JSON.parse(response)
 	comment_list = data
@@ -146,22 +146,24 @@
 	  on:createNewThread={createPost}
     />
   {:else if selected.component == "CreatePost"}
-    <CreatePost bind:username={name} on:goToThread={goToThreadList} />
+    <CreatePost bind:username={name} bind:key={authkey} on:goToThread={goToThreadList} />
 
 	{:else if selected.component == "CreateComment"}
-    <CreateComment bind:username={name} bind:threadID={postContents.unique_id} on:goToPost={goToPost} />
+    <CreateComment bind:username={name} bind:key={authkey} bind:threadID={postContents.unique_id} on:goToPost={goToPost} />
 
   {:else if selected.component == "EditPost"}
   	<EditPost bind:username={name}
 	  bind:threadID={postContents.unique_id}
 	  bind:threadTitle={postContents.title}
 	  bind:threadContent={postContents.content}
+	  bind:key={authkey}
 	  on:goToPost={goToPost}/>
 
   {:else if selected.component == "EditComment"}
   	<EditComment 
 	  bind:username={name}
 	  bind:comment={selectedComment}
+	  bind:key={authkey}
 	  on:goToPost={goToPost}/>
 
   {:else if selected.component == "Post"}

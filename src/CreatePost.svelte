@@ -2,6 +2,7 @@
     import { createEventDispatcher } from "svelte";
   const dispatchEvent = createEventDispatcher();
   export let username;
+  export let key;
   let threadTitle;
   let threadTag;
   let threadPost;
@@ -14,7 +15,10 @@
     "title":threadTitle,
     "tag":threadTag,
     "content":threadPost
-  })
+  }),
+  headers:{
+    "x-auth-key":key
+  }
 })
 .then(response => {
     data = JSON.parse(response)

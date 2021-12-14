@@ -3,6 +3,7 @@
   const dispatchEvent = createEventDispatcher();
   export let username;
   export let comment;
+  export let key;
   
 
   function editComment() {
