@@ -71,7 +71,7 @@
 				"content": "baka baka"
 			}
 		]
-		}
+		};
 	}
 
 	function goback(){
@@ -88,6 +88,7 @@
 		<Table bind:props={tableProperties} bind:body={tableBody} on:item-clicked={getpost}/>
 	{:else if selected.component == "Post"}
 		<Post bind:content={postContents} on:go-back={goback}/>
+		
 		{#each comment_list.item as comment}
 			<Comment bind:commentContent={comment}/>
 		{/each}

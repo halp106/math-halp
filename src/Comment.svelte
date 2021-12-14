@@ -6,7 +6,7 @@
 
     <div style="display:flex; justify-content:start">
         <p>
-            {commentContent.username}
+            {commentContent.username}:
         </p>
         <div style="margin-left:auto"> Comment# {commentContent.unique_comment_id}  @{commentContent.timestamp}</div>
     </div>

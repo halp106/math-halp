@@ -4,6 +4,8 @@
     export let props;
     export let body;
 
+    let createThread = false;
+
 	function handleClick(row) {
 		dispatch('item-clicked', {
 			unique_id: row.unique_id,
@@ -14,7 +16,22 @@
 		    content: row.content
         });
 	}
+    function createButtonClicked(){
+        createThread = !createThread
+    }
+
 </script>
+<button class="flex-auto bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white" on:click={createButtonClicked}>
+    create thread
+</button>
+
+{#if createThread}
+<div>
+    <p>
+        thread_creation here
+    </p>
+</div>
+{/if}
 
 <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
