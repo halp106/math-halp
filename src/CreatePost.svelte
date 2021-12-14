@@ -3,6 +3,7 @@
   const dispatchEvent = createEventDispatcher();
   export let username;
   let threadTitle;
+  let threadTag;
   let threadPost;
 
   function createNewPost() {
@@ -31,7 +32,15 @@
       placeholder="Thread Title"
     />
     </div>
-    
+    <div style="display:flex; justify-content:start; border:SkyBlue; margin-top:0.5em">
+      <textarea
+        bind:value={threadTag}
+        class="flex-auto shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
+        id="ThreadTag"
+        type="text"
+         placeholder="Category"
+        />
+      </div>
     <div style="display:flex; justify-content:start; border:solid 2px red; min-height:250px;">
         <textarea
         bind:value={threadPost}
