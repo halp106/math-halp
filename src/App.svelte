@@ -4,16 +4,18 @@
   import Comment from "./Comment.svelte";
   import Login from "./Login.svelte";
   import CreatePost from "./CreatePost.svelte";
+  import CreateComment from "./CreateComment.svelte";
 
   const comps = [
     { component: "Login" },
     { component: "Table" },
     { component: "Post" },
     { component: "Comment" },
-    { component: "CreatePost" }
+    { component: "CreatePost" },
+	{component: "CreateComment"}
   ];
 
-  let selected = comps[4];
+  let selected = comps[0];
   export let name;
 
   let tableProperties = {
@@ -87,9 +89,18 @@
 	
   }
 
+  function goToPost() {
+   	
+	selected.component = "Post";
+	
+  }
+
   function createPost() {
-	alert("made it here")
     selected.component = "CreatePost";
+  }
+
+  function createComment() {
+    selected.component = "CreateComment";
   }
 
   function login(event) {
@@ -118,8 +129,13 @@
   {:else if selected.component == "CreatePost"}
     <CreatePost on:goToThread={goToThreadList} />
 
+	{:else if selected.component == "CreateComment"}
+    <CreateComment on:goToPost={goToPost} />
+
   {:else if selected.component == "Post"}
-    <Post bind:content={postContents} on:go-back={goToThreadList} />
+    <Post bind:content={postContents}
+	on:createComment={createComment} 
+	on:go-back={goToThreadList} />
 
     {#if comment_list.item.length > 0}
       <p><b>Comments:</b></p>

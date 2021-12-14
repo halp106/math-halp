@@ -4,6 +4,10 @@
    export let content;
    function handleClick() {
 		dispatch('go-back', {})
+    
+   }
+   function createButtonClicked(){
+       dispatch("createComment")
    }
 </script>
 <button class="bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white" on:click={handleClick}>
@@ -30,4 +34,10 @@
             {content.content}
         </p>
     </div>
+    <button
+  class="flex-auto bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white"
+  on:click={createButtonClicked}
+>
+  Create Comment
+</button>
 </div>
