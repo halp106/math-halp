@@ -6,40 +6,40 @@
     export let Password;
     let Email;
     let success = false;
+    let authentication_key = "";
+    let auth_key_expiration = "";
 
     function loginSuccessful() {
-        dispatchEvent("goToThread", {user: Username, authkey: key, expiration: expire});
+        dispatchEvent("goToThread", {user: Username, authkey: authentication_key, expiration: auth_key_expiration});
     }
 
     function loginUnSuccessful() {
         alert("Login Unsuccessful, please try again!");
     }
 
-    function logintoThreadpage() {
-        let key;
-        let expire;
-        try {
-            fetch("http://127.0.0.1:8000/login", {
-                method: "post",
-                body: JSON.stringify({
-                    "username": Username,
-                    "password": Password
-                })
-            })
-                .then(response => {
-                    data = JSON.parse(response)
-                    key = data.auth_key
-                    expire = data.expiration_datetime
-                })
-        } catch (error) {
-            console.error(error);
-        }
+    async function logintoThreadpage() {
+      let key;
+      let expire;
+      try {
+        await fetch("http://127.0.0.1:8000/login", {
+          method: "POST",
+          body: JSON.stringify({
+            "username": Username,
+            "password": Password
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          authentication_key = data.auth_key;
+          auth_key_expiration = data.expiration_datetime;
 
-        if (success) {
-            loginSuccessful();
-        } else {
-            loginUnSuccessful();
-        }
+          // Login was successful; transition
+          loginSuccessful();
+        })
+      } catch (error) {
+        console.error(error);
+        loginUnSuccessful();
+      }
     }
 
     function register() {
@@ -62,7 +62,7 @@
         if (success) {
             loginSuccessful();
         } else {
-            loginUnSuccessful();
+            // loginUnSuccessful();
         }
     }
 </script>
