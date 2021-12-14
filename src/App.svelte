@@ -127,7 +127,7 @@
 	  on:createNewThread={createPost}
     />
   {:else if selected.component == "CreatePost"}
-    <CreatePost on:goToThread={goToThreadList} />
+    <CreatePost bind:username={name} on:goToThread={goToThreadList} />
 
 	{:else if selected.component == "CreateComment"}
     <CreateComment bind:username={name} on:goToPost={goToPost} />
