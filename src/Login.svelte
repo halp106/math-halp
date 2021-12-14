@@ -4,6 +4,7 @@
   export let Username;
   export let Password;
   let Email;
+  let success = false;
 
   function loginSuccessful() {
     dispatchEvent("goToThread", {user: Username});
@@ -14,12 +15,46 @@
   }
 
   function logintoThreadpage() {
-    alert(Username);
+    try {
+      fetch("127.0.0.1/login", {
+      method: "post",
+  //make sure to serialize your JSON body
+  body: JSON.stringify({
+    "username": Username,
+    "password": Password
+  })
+})
+.then(response => response.json())
+  .then(data => {
+    success = data.success
+  })
+    }catch(error) {
+        console.error(error);
+    }
+
     loginSuccessful();
   }
 
   function register(){
-    alert("registering");
+    try {
+      fetch("127.0.0.1:8000/register", {
+      method: "post",
+
+  //make sure to serialize your JSON body
+  body: JSON.stringify({
+    "username": Username,
+    "email": Email,
+    "password": Password
+  })
+})
+.then(response => response.json())
+  .then(data => {
+    success = data.success
+    })
+  }catch(error) {
+        console.error(error);
+    }
+  
     loginSuccessful();
   }
 </script>
