@@ -25,8 +25,8 @@
     "password": Password
   })
 })
-.then(response => response.json())
-  .then(data => {
+.then(response => {
+    data = JSON.parse(response)
     key = data.auth_key
     expire = data.expiration_datetime
   })
@@ -51,8 +51,8 @@
     "password": Password
   })
 })
-.then(response => response.json())
-  .then(data => {
+.then(response => {
+    data = JSON.parse(response)
     success = data.success
     })
   }catch(error) {
