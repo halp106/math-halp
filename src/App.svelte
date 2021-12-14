@@ -5,14 +5,20 @@
   import Login from "./Login.svelte";
   import CreatePost from "./CreatePost.svelte";
   import CreateComment from "./CreateComment.svelte";
+  import EditPost from "./EditPost.svelte";
+  import EditComment from "./EditComment.svelte";
+  import Landing from "./Landing.svelte";
 
   const comps = [
+	{ component: "Landing"},
     { component: "Login" },
     { component: "Table" },
     { component: "Post" },
     { component: "Comment" },
     { component: "CreatePost" },
-	{component: "CreateComment"}
+	{component: "CreateComment"},
+	{component: "EditPost"},
+	{component: "EditComment"}
   ];
 
   let selected = comps[0];
@@ -23,7 +29,7 @@
       "Name",
       "Title",
       "Status",
-      "Role",
+      "TimeStamp",
       "", // Empty space
     ]
   };
@@ -92,7 +98,7 @@
   function goToPost() {
    	
 	selected.component = "Post";
-	
+	  
   }
 
   function createPost() {
@@ -103,11 +109,27 @@
     selected.component = "CreateComment";
   }
 
+  function editPost() {
+	  selected.component = "EditPost";
+  }
+
+  let selectedComment;
+  function editComment(event) {
+	  selected.component = "EditComment"
+	  selectedComment = event.detail.content
+  }
+
   function login(event) {
 	  name = event.detail.user;
     selected.component = "Table";
     
   }
+
+  function toLoginPage(){
+	selected.component = "Login"
+  }
+
+
 </script>
 
 <main>
@@ -117,7 +139,9 @@
     how to build Svelte apps.
   </p>
 
-  {#if selected.component == "Login"}
+  {#if selected.component == "Landing"}
+  	<Landing on:sign-in={toLoginPage} on:authenticated={goToThreadList}/>
+  {:else if selected.component == "Login"}
     <Login on:goToThread={login} />
   {:else if selected.component == "Table"}
     <Table
@@ -127,20 +151,37 @@
 	  on:createNewThread={createPost}
     />
   {:else if selected.component == "CreatePost"}
-    <CreatePost on:goToThread={goToThreadList} />
+    <CreatePost bind:username={name} on:goToThread={goToThreadList} />
 
 	{:else if selected.component == "CreateComment"}
-    <CreateComment on:goToPost={goToPost} />
+    <CreateComment bind:username={name} on:goToPost={goToPost} />
+
+  {:else if selected.component == "EditPost"}
+  	<EditPost bind:username={name}
+	  bind:threadID={postContents.unique_id}
+	  bind:threadTitle={postContents.title}
+	  bind:threadContent={postContents.content}
+	  on:goToPost={goToPost}/>
+
+  {:else if selected.component == "EditComment"}
+  	<EditComment 
+	  bind:username={name}
+	  bind:comment={selectedComment}
+	  on:goToPost={goToPost}/>
 
   {:else if selected.component == "Post"}
     <Post bind:content={postContents}
+	bind:username={name}
 	on:createComment={createComment} 
-	on:go-back={goToThreadList} />
+	on:go-back={goToThreadList}
+	on:editPost={editPost} />
 
     {#if comment_list.item.length > 0}
       <p><b>Comments:</b></p>
       {#each comment_list.item as comment}
-        <Comment bind:commentContent={comment} />
+        <Comment bind:commentContent={comment} 
+		bind:username={name} 
+		on:editComment={editComment}/>
       {/each}
     {/if}
   {/if}

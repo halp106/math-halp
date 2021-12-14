@@ -2,11 +2,11 @@
   import { createEventDispatcher } from "svelte";
   const dispatchEvent = createEventDispatcher();
   export let username;
-  let comment = "";
+  export let comment;
   
 
-  function createNewComment() {
-    alert(comment+"Created by"+username);
+  function editComment() {
+    alert("editing in db")
     goBack();
   }
 
@@ -34,9 +34,9 @@
     </div>
     
     <button
-      on:click={createNewComment}
+      on:click={editComment}
       class="bg-blue hover:bg-blue-dark text-black font-bold py-2 px-4 rounded"
     >
-      Create Comment
+      edit Comment
     </button>
 </div>

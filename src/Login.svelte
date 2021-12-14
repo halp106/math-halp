@@ -44,10 +44,10 @@
     />
     <p class="text-red text-xs italic">Please choose a password.</p>
   </div>
-  <div class="flex items-center justify-between">
+  <div class="mb-6">
     <button
       on:click={logintoThreadpage}
-      class="bg-blue hover:bg-blue-dark text-black font-bold py-2 px-4 rounded"
+      class="bg-blue hover:bg-blue-dark text-black font-bold py-2 px-4 rounded-lg"
       type="button"
     >
       Sign In

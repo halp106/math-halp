@@ -2,16 +2,17 @@
     import { createEventDispatcher } from "svelte";
   const dispatchEvent = createEventDispatcher();
   export let username;
-  let threadTitle;
-  let threadPost;
+  export let threadID;
+  export let threadTitle;
+  export let threadContent;
 
-  function createNewPost() {
-    alert("New Post Created "+threadTitle);
+  function editPost() {
+    alert("Post edited "+threadTitle+"\n ID:"+threadID);
     goBack();
   }
 
   function goBack() {
-      dispatchEvent("goToThread");
+      dispatchEvent("goToPost");
   }
   
 </script>
@@ -25,26 +26,26 @@
     <div style="display:flex; justify-content:start;">
        <textarea
       bind:value={threadTitle}
-      class="flex-auto shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
+      class="flex-auto shadow appearance-none border rounded w-full py-2 text-grey-darker"
       id="ThreadTitle"
       type="text"
       placeholder="Thread Title"
-    />
+    ></textarea>
     </div>
     
     <div style="display:flex; justify-content:start; border:solid 2px red; min-height:250px;">
         <textarea
-        bind:value={threadPost}
-        class="flex-auto shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
+        bind:value={threadContent}
+        class="flex-auto shadow appearance-none border rounded w-full py-2 text-grey-darker"
         id="ThreadPost"
         type="text"
          placeholder="Begin a Disscusion"
         />
     </div>
     <button
-      on:click={createNewPost}
+      on:click={editPost}
       class="bg-blue hover:bg-blue-dark text-black font-bold py-2 px-4 rounded"
     >
-      Create Post
+      Edit Post
     </button>
 </div>
