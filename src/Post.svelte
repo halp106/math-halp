@@ -11,6 +11,10 @@
    function createButtonClicked(){
        dispatch("createComment")
    }
+
+   function editButtonClicked(){
+       dispatch("editPost")
+   }
 </script>
 <button class="bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white rounded-md" on:click={handleClick}>
     go back
@@ -37,7 +41,7 @@
         </p>
 
         {#if username == content.username}
-        <button style="display:flex; margin-left:auto; margin-top:auto; color:white; background-color: DeepSkyBlue">
+        <button style="display:flex; margin-left:auto; margin-top:auto; color:white; background-color: DeepSkyBlue" on:click={editButtonClicked}>
         Edit Post
         </button>
         {/if}
