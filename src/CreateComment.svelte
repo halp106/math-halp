@@ -11,16 +11,16 @@
       fetch("127.0.0.1/thread/"+threadID+"/create_comment", {
       method: "post",
   body: JSON.stringify({
-    "title":threadTitle,
-    "tag":threadTag,
-    "content":threadPost
+    "content":comment
   })
 })
 .then(response => {
     data = JSON.parse(response)
-    key = data.auth_key
-    expire = data.expiration_datetime
-    goBack();
+    if (data.success){
+      goBack();
+    }else{
+      alert("failed")
+    }
   })
     }catch(error) {
         console.error(error);
