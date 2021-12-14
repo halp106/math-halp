@@ -4,6 +4,24 @@
 
   function checkAuthenticated() {
     let authenticated = false;
+
+    try {
+      fetch("127.0.0.1:8000/register", {
+      method: "post",
+  body: JSON.stringify({
+    "username": Username,
+    "email": Email,
+    "password": Password
+  })
+})
+.then(response => response.json())
+  .then(data => {
+    success = data.success
+    })
+  }catch(error) {
+        console.error(error);
+    }
+    
     if(authenticated){
       dispatchEvent("authenticated");
     }else{

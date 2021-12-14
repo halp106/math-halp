@@ -34,27 +34,7 @@
     ]
   };
 
-  let tableBody = {
-    bodys: [
-      {
-        unique_id: "10",
-        title: "How to Add",
-        username: "lronhubbard",
-        timestamp: "20211213T135800",
-        tag: "addition",
-        content: "How does add work? I don't understand 3+3=6?"
-      },
-      {
-        unique_id: "11",
-        title: "How to Subtract",
-        username: "lronhubbard",
-        timestamp: "20211213T135801",
-        tag: "subtraction",
-        content: "How does subtract work? I don't understand 3-3=0?"
-      }
-    ]
-  };
-
+  let tableBody;
   let postContents;
   let comment_list;
   function getpost(event) {
@@ -90,7 +70,15 @@
   }
 
   function goToThreadList() {
-   	
+	try {
+      fetch("127.0.0.1:8000/threads")
+.then(response => response.json())
+  .then(data => {
+    tableBody = data
+    })
+  }catch(error) {
+        console.error(error);
+    }
 	selected.component = "Table";
 	
   }

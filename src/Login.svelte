@@ -15,10 +15,11 @@
   }
 
   function logintoThreadpage() {
+    let key;
+    let expire;
     try {
       fetch("127.0.0.1/login", {
       method: "post",
-  //make sure to serialize your JSON body
   body: JSON.stringify({
     "username": Username,
     "password": Password
@@ -26,7 +27,8 @@
 })
 .then(response => response.json())
   .then(data => {
-    success = data.success
+    key = data.auth_key
+    expire = data.expiration_datetime
   })
     }catch(error) {
         console.error(error);
@@ -43,8 +45,6 @@
     try {
       fetch("127.0.0.1:8000/register", {
       method: "post",
-
-  //make sure to serialize your JSON body
   body: JSON.stringify({
     "username": Username,
     "email": Email,
