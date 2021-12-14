@@ -48,6 +48,7 @@
       tag: event.detail.tag,
       content: event.detail.content,
     };
+
 	try {
       fetch("127.0.0.1/threads/"+postContents.thread_id+"/comments")
 .then(response => {
@@ -164,7 +165,7 @@
 
     {#if comment_list.item.length > 0}
       <p><b>Comments:</b></p>
-      {#each comment_list.item as comment}
+      {#each comment_list.comments as comment}
         <Comment bind:commentContent={comment} 
 		bind:username={name} 
 		on:editComment={editComment}/>

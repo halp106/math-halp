@@ -15,7 +15,7 @@
         <p>
             {commentContent.username}:
         </p>
-        <div style="margin-left:auto"> Comment# {commentContent.unique_comment_id}  @{commentContent.timestamp}</div>
+        <div style="margin-left:auto"> Comment# {commentContent.unique_id}  @{commentContent.creation_timestamp}</div>
     </div>
 
     <div style="display:flex; justify-content:start">
@@ -23,7 +23,7 @@
             {commentContent.content}
         </p>
 
-        {#if username == commentContent.username}
+        {#if username == commentContent.creator_uid}
         <button style="display:flex; margin-left:auto; margin-top:auto; color:white; background-color: DeepSkyBlue; border-radius: 5px; overflow:hidden;"
         on:click={editComment}>
             Edit
