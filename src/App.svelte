@@ -140,7 +140,7 @@
     <CreatePost bind:username={name} on:goToThread={goToThreadList} />
 
 	{:else if selected.component == "CreateComment"}
-    <CreateComment bind:username={name} on:goToPost={goToPost} />
+    <CreateComment bind:username={name} bind:threadID={postContents.unique_id} on:goToPost={goToPost} />
 
   {:else if selected.component == "EditPost"}
   	<EditPost bind:username={name}

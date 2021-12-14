@@ -7,7 +7,24 @@
   let threadPost;
 
   function createNewPost() {
-    alert("New Post Created "+threadTitle);
+    try {
+      fetch("127.0.0.1/thread/create", {
+      method: "post",
+  body: JSON.stringify({
+    "title":threadTitle,
+    "tag":threadTag,
+    "content":threadPost
+  })
+})
+.then(response => {
+    data = JSON.parse(response)
+    key = data.auth_key
+    expire = data.expiration_datetime
+  })
+    }catch(error) {
+        console.error(error);
+        alert(error)
+    }
     goBack();
   }
 
