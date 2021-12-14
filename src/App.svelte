@@ -3,8 +3,11 @@
 	import Post from "./Post.svelte";
 	import Comment from "./Comment.svelte";
 	import Login from "./Login.svelte"
+	
+	
 
 	const comps = [
+		{component: "Login"},
 		{component: "Table"},
 		{component: "Post"},
 		{component: "Comment"}
@@ -75,20 +78,30 @@
 		};
 	}
 
-	function goback(){
+	function goToThreadList(){
+		selected.component = "Table";
+		name = user
+	}
+
+	function login(){
 		selected.component = "Table";
 	}
+
+	
+
 </script>
 
 
 <main>
-	<h1>Hello {name}!</h1>
+	<h1>Welcome to Math Halp! {name}</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 	
-	{#if selected.component == "Table"}
+	{#if selected.component == "Login"}
+		<Login on:goToThread={goToThreadList}/>	
+	{:else if selected.component == "Table"}
 		<Table bind:props={tableProperties} bind:body={tableBody} on:item-clicked={getpost}/>
 	{:else if selected.component == "Post"}
-		<Post bind:content={postContents} on:go-back={goback}/>
+		<Post bind:content={postContents} on:go-back={goToThreadList}/>
 
 		{#if comment_list.item.length > 0}
 			<p><b>Comments:</b></p>
