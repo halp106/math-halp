@@ -20,12 +20,12 @@
     data = JSON.parse(response)
     key = data.auth_key
     expire = data.expiration_datetime
+    goBack();
   })
     }catch(error) {
         console.error(error);
         alert(error)
     }
-    goBack();
   }
 
   function goBack() {
