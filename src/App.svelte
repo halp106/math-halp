@@ -6,6 +6,7 @@
   import CreatePost from "./CreatePost.svelte";
   import CreateComment from "./CreateComment.svelte";
   import EditPost from "./EditPost.svelte";
+  import EditComment from "./EditComment.svelte";
 
   const comps = [
     { component: "Login" },
@@ -14,7 +15,8 @@
     { component: "Comment" },
     { component: "CreatePost" },
 	{component: "CreateComment"},
-	{component: "EditPost"}
+	{component: "EditPost"},
+	{component: "EditComment"}
   ];
 
   let selected = comps[0];
@@ -109,6 +111,12 @@
 	  selected.component = "EditPost";
   }
 
+  let selectedComment;
+  function editComment(event) {
+	  selected.component = "EditComment"
+	  selectedComment = event.detail.content
+  }
+
   function login(event) {
 	  name = event.detail.user;
     selected.component = "Table";
@@ -144,8 +152,14 @@
 	  bind:threadID={postContents.unique_id}
 	  bind:threadTitle={postContents.title}
 	  bind:threadContent={postContents.content}
-	  on:goToPost={goToPost}
-	  />
+	  on:goToPost={goToPost}/>
+
+  {:else if selected.component == "EditComment"}
+  	<EditComment 
+	  bind:username={name}
+	  bind:comment={selectedComment}
+	  on:goToPost={goToPost}/>
+
   {:else if selected.component == "Post"}
     <Post bind:content={postContents}
 	bind:username={name}
@@ -156,7 +170,9 @@
     {#if comment_list.item.length > 0}
       <p><b>Comments:</b></p>
       {#each comment_list.item as comment}
-        <Comment bind:commentContent={comment} bind:username={name} />
+        <Comment bind:commentContent={comment} 
+		bind:username={name} 
+		on:editComment={editComment}/>
       {/each}
     {/if}
   {/if}
