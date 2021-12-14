@@ -43,9 +43,7 @@
         {/if}
     </div>
 </div>
-<button
-  class="flex-auto bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white"
-  on:click={createButtonClicked}
->
+<button class="flex-auto bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white"
+  on:click={createButtonClicked}>
   Create Comment
 </button>

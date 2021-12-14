@@ -1,12 +1,12 @@
 <script>
-    import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher } from "svelte";
   const dispatchEvent = createEventDispatcher();
-  export let Username;
-  export let Comment;
+  export let username;
+  let comment = "";
   
 
   function createNewComment() {
-    alert("New Comment Created");
+    alert(comment+"Created by"+username);
     goBack();
   }
 
@@ -25,7 +25,7 @@
   
     <div style="display:flex; justify-content:start; margin-top:0.5em; margin-right: 40px">
        <input
-      bind:value={Comment}
+      bind:value={comment}
       class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
       id="ThreadTitle"
       type="text"
