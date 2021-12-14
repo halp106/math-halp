@@ -29,7 +29,7 @@
       "Name",
       "Title",
       "Status",
-      "Role",
+      "TimeStamp",
       "", // Empty space
     ]
   };
@@ -138,7 +138,7 @@
     Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
     how to build Svelte apps.
   </p>
-  
+
   {#if selected.component == "Landing"}
   	<Landing on:sign-in={toLoginPage} on:authenticated={goToThreadList}/>
   {:else if selected.component == "Login"}
