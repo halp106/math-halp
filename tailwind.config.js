@@ -6,6 +6,7 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
   },
   plugins: [
+    require('@tailwindcss/ui')
   ],
   purge: {
     content: [

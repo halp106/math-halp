@@ -1,6 +1,37 @@
 <script>
+    import {createEventDispatcher} from "svelte";
+    const dispatch = createEventDispatcher();
     export let props;
+    export let body;
+
+    let createThread = false;
+
+	function handleClick(row) {
+		dispatch('item-clicked', {
+			unique_id: row.unique_id,
+			title: row.title,
+			username: row.username,
+			timestamp: row.timestamp,
+			tag: row.tag,
+		    content: row.content
+        });
+	}
+    function createButtonClicked(){
+        createThread = !createThread
+    }
+
 </script>
+<button class="flex-auto bg-violet-500 hover:bg-violet-400 active:bg-violet-600 flex items-start text-white" on:click={createButtonClicked}>
+    create thread
+</button>
+
+{#if createThread}
+<div>
+    <p>
+        thread_creation here
+    </p>
+</div>
+{/if}
 
 <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -11,47 +42,22 @@
                     <tr>
                         {#each props.headings as headingContent}
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 {headingContent}
                             </th>
                         {/each}
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full"
-                                         src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-                                         alt="">
-                                </div>
-                                <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900">
-                                        Jane Cooper
-                                    </div>
-                                    <div class="text-sm text-gray-500">
-                                        jane.cooper@example.com
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-                            <div class="text-sm text-gray-500">Optimization</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                              Active
-                            </span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Admin
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                        </td>
-                    </tr>
+                        {#each body.bodys as bodyContent}
+                        <tr class="hover:bg-zinc-400" on:click={() => handleClick(bodyContent)}>
+                                <td>{bodyContent.username}</td>
+                                <td>{bodyContent.title}</td>
+                                <td>{bodyContent.tag}</td>
+                                <td>{bodyContent.timestamp}</td>
+                                <td>edit</td>
+                        </tr>
+                        {/each}
 
                     <!-- More people... -->
                     </tbody>
