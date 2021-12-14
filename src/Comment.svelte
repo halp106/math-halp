@@ -1,6 +1,6 @@
 <script>
     export let commentContent;
-    export let isEditable;
+    export let username;
 </script>
 
 <div id="parent" style="display:flex; display:block; height:100%; border:solid 1px gold; background-color:GhostWhite">
@@ -17,7 +17,9 @@
             {commentContent.content}
         </p>
     </div>
-    <button style="display:flex; justify-content:end; color:white; background-color: DeepSkyBlue">
-        Edit
-    </button>
+    {#if username == commentContent.username}
+        <button style="display:flex; justify-content:end; color:white; background-color: DeepSkyBlue">
+            Edit
+        </button>
+    {/if}
 </div>

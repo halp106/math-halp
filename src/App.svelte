@@ -9,8 +9,8 @@
 		{component: "Post"},
 		{component: "Comment"}
 	]
-
 	let selected = comps[0]
+
 	export let name;
 
 	let tableProperties = {
@@ -93,7 +93,7 @@
 		{#if comment_list.item.length > 0}
 			<p><b>Comments:</b></p>
 			{#each comment_list.item as comment}
-				<Comment bind:commentContent={comment}/>
+				<Comment bind:commentContent={comment} bind:username={name}/>
 			{/each}
 
 		{/if}
